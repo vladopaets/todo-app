@@ -1,0 +1,18 @@
+
+.homepage {
+    text-align: center;
+    padding-top: 125px;
+}
+.homepage h1 {
+    margin-bottom: 25px;
+}
+.navigation a {
+    color: #383636;
+    font-size: 14px;
+}
+.navigation a:first-child {
+    margin-right: 20px;
+}
+.navigation a:hover {
+    text-decoration: none;
+}

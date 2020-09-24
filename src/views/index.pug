@@ -1,0 +1,11 @@
+extends blocks/layout
+
+block append styles
+    link(rel='stylesheet', type='text/css', href='/styles/homepage.css')
+
+block content
+    div.homepage
+        h1 Welcome!
+        div.navigation
+            a(href='/register') Create an account
+            a(href='/login') Login
