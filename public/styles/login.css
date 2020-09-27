@@ -29,9 +29,6 @@
     padding: 0 15px;
     margin-bottom: 15px;
 }
-.content .hasError {
-    border-color: red;
-}
 .content button {
     background: #3939de;
     color: white;

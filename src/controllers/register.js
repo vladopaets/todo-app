@@ -23,11 +23,12 @@ module.exports = {
                     errorMsg = 'User already exist';
                 } else {
                     const newUser = new UserModel(req.body);
-                    const salt = await bcrypt.genSalt(20);
+                    const salt = await bcrypt.genSalt(3);
                     newUser.password = await bcrypt.hash(newUser.password, salt);
 
                     await newUser.save();
 
+                    req.session.user = newUser;
                     res.redirect('/dashboard');
 
                     return;

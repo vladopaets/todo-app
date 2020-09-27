@@ -1,4 +1,25 @@
-include blocks/layout
+extends blocks/layout
+
+block append styles
+    link(rel='stylesheet', type='text/css', href='/styles/registration.css')
 
 block content
-    h1 Login page
+    div.content
+        h3 Fill the form below to login
+        div.error
+            p=errorMsg
+        form(method='post', action='/login')
+            input(
+                type='email',
+                placeholder='Enter your email',
+                name='email',
+                required=true,
+                value=email
+            )
+            input(
+                type='password',
+                placeholder='Enter your password',
+                name='password',
+                required=true,
+            )
+            button(type='submit') Login

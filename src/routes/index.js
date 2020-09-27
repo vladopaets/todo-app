@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router();
 const {body} = require('express-validator');
 
+const {dashboardMiddleware, authorizedMiddleware} = require('../middlewares');
+
 const homepage = require('../controllers/homepage');
 const register = require('../controllers/register');
 const login = require('../controllers/login');
@@ -9,7 +11,7 @@ const dashboard = require('../controllers/dashboard');
 
 router.get('/', homepage.get);
 
-router.get('/register', register.get);
+router.get('/register', authorizedMiddleware, register.get);
 router.post(
     '/register',
     [
@@ -42,8 +44,9 @@ router.post(
     ],
     register.createUser
 )
-router.get('/login', login.get);
-router.get('/dashboard', dashboard.get);
+router.get('/login', authorizedMiddleware, login.get);
+router.post('/login', login.post);
+router.get('/dashboard', dashboardMiddleware, dashboard.get);
 
 router.use((req, res, next) => {
     res.render('404.pug')

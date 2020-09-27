@@ -1,5 +1,38 @@
+const bcrypt = require('bcrypt');
+const UserModel = require('../models/user');
+
 module.exports = {
     get: (req, res) => {
         res.render('login', {title: 'Todo: Login'})
+    },
+    post: async (req, res) => {
+        try {
+            const user = await UserModel.findOne({email: req.body.email});
+
+            if (!user) {
+                res.render('login', {
+                    title: 'Todo: Login',
+                    errorMsg: 'Email or password does not match',
+                    email: req.body.email
+                });
+
+                return;
+            }
+
+            const match = await bcrypt.compare(req.body.password, user.password);
+
+            if (match) {
+                req.session.user = user;
+                res.redirect('/dashboard');
+            } else {
+                res.render('login', {
+                    title: 'Todo: Login',
+                    errorMsg: 'Email or password does not match',
+                    email: req.body.email
+                });
+            }
+        } catch (e) {
+            console.error(e)
+        }
     }
 }
