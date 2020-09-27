@@ -5,7 +5,7 @@ module.exports = {
     get: (req, res) => {
         res.render('login', {title: 'Todo: Login'})
     },
-    post: async (req, res) => {
+    login: async (req, res) => {
         try {
             const user = await UserModel.findOne({email: req.body.email});
 
@@ -31,6 +31,16 @@ module.exports = {
                     email: req.body.email
                 });
             }
+        } catch (e) {
+            console.error(e)
+        }
+    },
+    logout: (req, res) => {
+        try {
+            req.session.destroy();
+            res.clearCookie('user_sid');
+
+            res.redirect('/');
         } catch (e) {
             console.error(e)
         }

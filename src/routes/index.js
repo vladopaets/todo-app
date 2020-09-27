@@ -5,13 +5,13 @@ const {body} = require('express-validator');
 const {dashboardMiddleware, authorizedMiddleware} = require('../middlewares');
 
 const homepage = require('../controllers/homepage');
-const register = require('../controllers/register');
-const login = require('../controllers/login');
+const registerController = require('../controllers/register');
+const loginController = require('../controllers/login');
 const dashboard = require('../controllers/dashboard');
 
 router.get('/', homepage.get);
 
-router.get('/register', authorizedMiddleware, register.get);
+router.get('/register', authorizedMiddleware, registerController.get);
 router.post(
     '/register',
     [
@@ -42,10 +42,12 @@ router.post(
             })
 
     ],
-    register.createUser
+    registerController.createUser
 )
-router.get('/login', authorizedMiddleware, login.get);
-router.post('/login', login.post);
+router.get('/login', authorizedMiddleware, loginController.get);
+router.post('/login', loginController.login);
+router.get('/logout', loginController.logout);
+
 router.get('/dashboard', dashboardMiddleware, dashboard.get);
 
 router.use((req, res, next) => {
