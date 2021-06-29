@@ -1,5 +1,6 @@
 module.exports = {
     get: (req, res) => {
-        res.render('index', {title: 'Todo: Homepage'})
+        const isUserLoggedIn = req.session.user && req.cookies.user_sid;
+        res.render('index', {title: 'Todo: Homepage', isUserLoggedIn})
     }
 }

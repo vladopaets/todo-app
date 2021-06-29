@@ -5,7 +5,20 @@ block append styles
 
 block content
     div.homepage
-        h1 Welcome!
-        div.navigation
-            a(href='/register') Create an account
-            a(href='/login') Login
+        div.page-content
+            header
+                span.logo Do it!
+                div
+                    if isUserLoggedIn
+                        a(href='/dashboard') Dashboard
+                    else
+                        a(href='/login') Login
+                        a(href='/register') Create an account
+                    a(href='/contact-us') Contact us
+            div.content
+                div
+                    h1 Don't forget something important
+                    p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                    button Exlore
+                img(src='/images/todo.svg')
+            div.bottom-shape

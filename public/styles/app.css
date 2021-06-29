@@ -1,11 +1,18 @@
 body {
     margin: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 16px;
+    font-weight: 400;
 }
 * {
     box-sizing: border-box;
 }
 h1, h2, h3, h4, h5, h6, p {
     margin: 0;
+}
+.page-content {
+    max-width: 1240px;
+    width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
 }

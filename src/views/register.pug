@@ -4,53 +4,55 @@ block append styles
     link(rel='stylesheet', type='text/css', href='/styles/registration.css')
 
 block content
-    div.content
-        h3 Fill the form below to create an account
-        div.error
-            p=errorMsg
-        form(method='post', action='/register')
-            input(
-                type='text',
-                placeholder='Enter your first name',
-                name='firstName',
-                required=true,
-                value=values && values.firstName ? values.firstName: ''
-            )
-            input(
-                type='text',
-                placeholder='Enter your last name',
-                name='lastName',
-                required=true,
-                value=values && values.lastName ? values.lastName: ''
-            )
-            input(
-                type='email',
-                placeholder='Enter your email',
-                name='email',
-                required=true,
-                class=errors && errors.email ? 'hasError': '',
-                value=values && values.email ? values.email: ''
-            )
-            if errors && errors.email
-                p.inputError= errors.email
-            input(
-                type='password',
-                placeholder='Enter your password',
-                name='password',
-                required=true,
-                class=errors && errors.password ? 'hasError': '',
-                value=values && values.password ? values.password: ''
-            )
-            if errors && errors.password
-                p.inputError= errors.password
-            input(
-                type='password',
-                placeholder='Confirm your password',
-                name='confirmPassword',
-                required=true,
-                class=errors && errors.confirmPassword ? 'hasError': '',
-                value=values && values.confirmPassword ? values.confirmPassword: ''
-            )
-            if errors && errors.confirmPassword
-                p.inputError= errors.confirmPassword
-            button(type='submit') Create account
+    div.container
+        div.content
+            h3 Fill the form below to create an account
+            div.error
+                p=errorMsg
+            form(method='post', action='/register')
+                input(
+                    type='text',
+                    placeholder='Enter your first name',
+                    name='firstName',
+                    required=true,
+                    value=values && values.firstName ? values.firstName: ''
+                )
+                input(
+                    type='text',
+                    placeholder='Enter your last name',
+                    name='lastName',
+                    required=true,
+                    value=values && values.lastName ? values.lastName: ''
+                )
+                input(
+                    type='email',
+                    placeholder='Enter your email',
+                    name='email',
+                    required=true,
+                    class=errors && errors.email ? 'hasError': '',
+                    value=values && values.email ? values.email: ''
+                )
+                if errors && errors.email
+                    p.inputError= errors.email
+                input(
+                    type='password',
+                    placeholder='Enter your password',
+                    name='password',
+                    required=true,
+                    class=errors && errors.password ? 'hasError': '',
+                    value=values && values.password ? values.password: ''
+                )
+                if errors && errors.password
+                    p.inputError= errors.password
+                input(
+                    type='password',
+                    placeholder='Confirm your password',
+                    name='confirmPassword',
+                    required=true,
+                    class=errors && errors.confirmPassword ? 'hasError': '',
+                    value=values && values.confirmPassword ? values.confirmPassword: ''
+                )
+                if errors && errors.confirmPassword
+                    p.inputError= errors.confirmPassword
+                button(type='submit') Create account
+            a(href='/login') Already have account? Click to login
