@@ -49,6 +49,16 @@ router.post('/login', loginController.login);
 router.get('/logout', loginController.logout);
 
 router.get('/dashboard', dashboardMiddleware, dashboard.get);
+router.post(
+    '/add-todo-item',
+    [
+        body('title')
+            .not().isEmpty()
+            .withMessage('Title is required'),
+    ],
+    dashboardMiddleware,
+    dashboard.addTodo
+);
 
 router.use((req, res, next) => {
     res.render('404.pug')

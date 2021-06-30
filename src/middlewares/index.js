@@ -15,9 +15,9 @@ module.exports = {
             res.clearCookie('user_sid');
             
             res.redirect('/login');
+        } else {
+            next();
         }
-
-        next();
     },
     authorizedMiddleware: (req, res, next) => {
         if(req.session.user && req.cookies.user_sid) {

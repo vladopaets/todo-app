@@ -1,3 +1,33 @@
 extends blocks/layout
 
+block append styles
+    link(rel='stylesheet', type='text/css', href='/styles/dashboard.css')
+
 block content
+    div.dashboard
+        div.page-content
+            div
+                div.todo-list
+                    if todoItems.length > 0
+                        h3 Things to do
+                        for item in todoItems
+                            div.todo-item
+                                div
+                                    span.checkbox
+                                    p= item.title
+                                form(method='POST', action='/remove-todo-item')
+                                    input(hidden='true', name='id', value=item.id)
+                                    button remove
+                    else
+                        p Your list is empty
+                form(method='POST', action='/add-todo-item')
+                    div
+                        input(
+                            type='text',
+                            name='title'
+                            class=errorMsg ? 'hasError': '',
+                            placeholder='Input to do title'
+                        )
+                        button Add
+                    if errorMsg
+                        p.inputError= errorMsg

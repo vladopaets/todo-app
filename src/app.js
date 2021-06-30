@@ -22,7 +22,7 @@ app.use(session({
         path:  require('path').join(require('os').tmpdir(), '../sessions')
     }),
     cookie: {
-        expires: 600000
+        expires: 1000 * 60 * 60
     }
 }))
 app.use(cookieParser())
