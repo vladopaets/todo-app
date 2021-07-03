@@ -1,4 +1,4 @@
-extends blocks/layout
+extends ../blocks/layout
 
 block append styles
     link(rel='stylesheet', type='text/css', href='/styles/dashboard.css')
@@ -6,14 +6,26 @@ block append styles
 block content
     div.dashboard
         div.page-content
-            div
+            include ../blocks/header
+            div.inner-content
                 div.todo-list
                     if todoItems.length > 0
                         h3 Things to do
-                        for item in todoItems
+						for item in todoItems
                             div.todo-item
                                 div
-                                    span.checkbox
+                                    form(method='POST', action='/check-todo-item')
+                                        input(hidden='true', name='id', value=item.id)
+                                        input(
+                                            type='checkbox',
+                                            name='status',
+                                            checked=item.checked
+                                            hidden='true'
+                                        )
+                                        label
+                                            input(type='submit', hidden='true')
+                                            span
+                                                img(src='/images/check.svg')
                                     p= item.title
                                 form(method='POST', action='/remove-todo-item')
                                     input(hidden='true', name='id', value=item.id)

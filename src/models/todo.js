@@ -7,6 +7,14 @@ const todoSchema = new Schema({
 	},
 	checked: {
 		type: Boolean
+	},
+	user: {
+		type: Schema.Types.ObjectId,
+		ref: 'User'
+	},
+	date: {
+		type: Date,
+		default: Date.now()
 	}
 })
 

@@ -17,3 +17,40 @@ h1, h2, h3, h4, h5, h6, p {
     padding: 0 20px;
     margin: 0 auto;
 }
+header > div:first-of-type {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 48px 0 0 0;
+}
+header > div:first-of-type .logo {
+    font-weight: 700;
+    font-size: 36px;
+}
+header a {
+    color: white;
+    text-decoration: none;
+}
+header > div:first-of-type div a {
+    margin-left: 100px;
+}
+header > div:first-of-type a:hover {
+    text-decoration: underline;
+}
+.dashboard-header > div:first-of-type .logo,
+.dashboard-header > div:first-of-type a {
+    color: #333333;
+}
+header .dashboard-menu {
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+    border-top: 1px solid #333333;
+}
+header .dashboard-menu a {
+    color: #333333;
+    margin-left: 100px;
+}
+header .dashboard-menu a:first-of-type {
+    margin-left: 0;
+}

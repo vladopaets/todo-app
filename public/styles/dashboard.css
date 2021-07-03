@@ -1,16 +1,14 @@
 .dashboard {
     height: 100vh;
 }
-.page-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.inner-content {
+    width: 650px;
+    margin: 200px auto 0 auto;
 }
 .todo-list {
     padding: 48px;
     background: #333333;
     border-radius: 8px;
-    width: 650px;
 }
 .todo-list h3 {
     color: white;
@@ -21,6 +19,9 @@
     justify-content: space-between;
     margin-bottom: 16px;
 }
+.todo-item form {
+    margin: 0;
+}
 .todo-item > div {
     display: flex;
     align-items: center;
@@ -28,7 +29,6 @@
 .todo-item > form {
     display: flex;
     align-items: center;
-    margin: 0;
 }
 .todo-item > form button {
     width: 60px;
@@ -37,14 +37,27 @@
     font-size: 12px;
     letter-spacing: 0.5px;
 }
-.checkbox {
+.todo-item form input[type='checkbox']:checked + label span {
+    background-color: #29ABE2;
+    border-color: #29ABE2;
+}
+.todo-item form input[type='checkbox'] + label span  {
     width: 32px;
     height: 32px;
     border: 2px solid #B4B4B4;
     margin-right: 24px;
-    display: block;
+    display: flex;
     border-radius: 4px;
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+.todo-item form input[type='checkbox'] + label span img {
+    width: 18px;
+    display: none;
+}
+.todo-item form input[type='checkbox']:checked + label span img {
+    display: block;
 }
 .todo-list p {
     color: white;

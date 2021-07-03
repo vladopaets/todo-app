@@ -4,25 +4,6 @@
     background-color: #005AD5;
     position: relative;
     overflow: hidden;
-    padding: 48px 0;
-}
-.homepage header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.logo {
-    color: white;
-    font-weight: 700;
-    font-size: 36px;
-}
-.homepage header a {
-    color: white;
-    margin-left: 100px;
-    text-decoration: none;
-}
-.homepage header a:hover {
-    text-decoration: underline;
 }
 .bottom-shape {
     position: absolute;

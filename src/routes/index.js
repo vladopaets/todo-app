@@ -7,7 +7,8 @@ const {dashboardMiddleware, authorizedMiddleware} = require('../middlewares');
 const homepage = require('../controllers/homepage');
 const registerController = require('../controllers/register');
 const loginController = require('../controllers/login');
-const dashboard = require('../controllers/dashboard');
+const dashboardController = require('../controllers/dashboard');
+const todoListController = require('../controllers/dashboard/todo-list');
 
 router.get('/', homepage.get);
 
@@ -48,7 +49,8 @@ router.get('/login', authorizedMiddleware, loginController.get);
 router.post('/login', loginController.login);
 router.get('/logout', loginController.logout);
 
-router.get('/dashboard', dashboardMiddleware, dashboard.get);
+router.get('/dashboard/', dashboardMiddleware, dashboardController.get);
+router.get('/dashboard/todo-list', dashboardMiddleware, todoListController.get);
 router.post(
     '/add-todo-item',
     [
@@ -57,8 +59,10 @@ router.post(
             .withMessage('Title is required'),
     ],
     dashboardMiddleware,
-    dashboard.addTodo
+    todoListController.addTodo
 );
+router.post('/remove-todo-item', dashboardMiddleware, todoListController.removeTodo)
+router.post('/check-todo-item', dashboardMiddleware, todoListController.checkTodo)
 
 router.use((req, res, next) => {
     res.render('404.pug')

@@ -14,6 +14,16 @@ const userSchema = new Schema({
     },
     password: {
         type: Schema.Types.Mixed
+    },
+    todoItems: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Todo'
+        }
+    ],
+    date: {
+        type: Date,
+        default: Date.now()
     }
 })
 
