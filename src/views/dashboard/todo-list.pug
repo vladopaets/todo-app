@@ -1,7 +1,7 @@
 extends ../blocks/layout
 
 block append styles
-    link(rel='stylesheet', type='text/css', href='/styles/dashboard.css')
+    link(rel='stylesheet', type='text/css', href='/styles/dashboard/todo-list.css')
 
 block content
     div.dashboard
@@ -11,7 +11,7 @@ block content
                 div.todo-list
                     if todoItems.length > 0
                         h3 Things to do
-						for item in todoItems
+                        for item in todoItems
                             div.todo-item
                                 div
                                     form(method='POST', action='/check-todo-item')
@@ -29,7 +29,8 @@ block content
                                     p= item.title
                                 form(method='POST', action='/remove-todo-item')
                                     input(hidden='true', name='id', value=item.id)
-                                    button remove
+                                    button
+                                        img(src='/images/delete.svg')
                     else
                         p Your list is empty
                 form(method='POST', action='/add-todo-item')

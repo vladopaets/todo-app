@@ -15,7 +15,7 @@ module.exports = {
 	get: async (req, res) => {
 		let todoItems = await getTodoItems(req.session.user._id);
 		
-		res.render('./dashboard/index', {
+		res.render('./dashboard/todo-list', {
 			title: 'Todo: Dashboard',
 			todoItems,
 			isUserLoggedIn: true,
@@ -36,7 +36,7 @@ module.exports = {
 				
 				await todoItem.save();
 				
-				res.redirect('/dashboard');
+				res.redirect('/dashboard/todo-list');
 				return;
 			} catch (e) {
 				console.error('Can not add new todo item ', e.message);
@@ -63,7 +63,7 @@ module.exports = {
 			console.log(result)
 		}
 		
-		res.redirect('/dashboard');
+		res.redirect('/dashboard/todo-list');
 	},
 	checkTodo: async (req, res) => {
 		if (req.body.hasOwnProperty('id')) {
@@ -74,6 +74,6 @@ module.exports = {
 			console.log(result)
 		}
 		
-		res.redirect('/dashboard');
+		res.redirect('/dashboard/todo-list');
 	}
 }

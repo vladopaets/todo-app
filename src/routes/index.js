@@ -1,5 +1,4 @@
 const express = require('express')
-const router = express.Router();
 const {body} = require('express-validator');
 
 const {dashboardMiddleware, authorizedMiddleware} = require('../middlewares');
@@ -9,6 +8,10 @@ const registerController = require('../controllers/register');
 const loginController = require('../controllers/login');
 const dashboardController = require('../controllers/dashboard');
 const todoListController = require('../controllers/dashboard/todo-list');
+const teamsController = require('../controllers/dashboard/teams');
+const categoriesController = require('../controllers/dashboard/categories');
+
+const router = express.Router();
 
 router.get('/', homepage.get);
 
@@ -63,6 +66,8 @@ router.post(
 );
 router.post('/remove-todo-item', dashboardMiddleware, todoListController.removeTodo)
 router.post('/check-todo-item', dashboardMiddleware, todoListController.checkTodo)
+router.get('/dashboard/teams', dashboardMiddleware, teamsController.get)
+router.get('/dashboard/categories', dashboardMiddleware, categoriesController.get)
 
 router.use((req, res, next) => {
     res.render('404.pug')

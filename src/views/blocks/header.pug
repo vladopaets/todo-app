@@ -11,5 +11,6 @@ header(class=isDashboard ? 'dashboard-header' : '')
                 a(href='/register') Create an account
     if isDashboard
         div.dashboard-menu
-            a(href='') Todo list
-            a(href='') Teams
+            a(href='/dashboard/todo-list') Todo list
+            a(href='/dashboard/categories') Categories
+            a(href='/dashboard/teams') Teams
