@@ -23,20 +23,6 @@
     display: flex;
     align-items: center;
 }
-.todo-item > form {
-    display: flex;
-    align-items: center;
-}
-.todo-item > form button {
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.todo-item > form button img {
-    width: 18px;
-}
 .todo-item form input[type='checkbox']:checked + label span {
     background-color: #29ABE2;
     border-color: #29ABE2;
@@ -65,6 +51,33 @@
 }
 .todo-item p {
     color: #333333;
+}
+.actions form {
+    display: flex;
+    align-items: center;
+}
+.actions {
+    display: flex;
+}
+.actions button {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.actions button:first-of-type {
+    background-color: #6200ee;
+}
+.actions button:nth-child(2) {
+    background-color: #005AD5;
+}
+.actions img {
+    width: 18px;
 }
 form {
     margin-top: 16px;

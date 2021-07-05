@@ -27,10 +27,13 @@ block content
                                             span
                                                 img(src='/images/check.svg')
                                     p= item.title
-                                form(method='POST', action='/remove-todo-item')
-                                    input(hidden='true', name='id', value=item.id)
+                                div.actions
                                     button
-                                        img(src='/images/delete.svg')
+                                        img(src='/images/edit.svg')
+                                    form(method='POST', action='/remove-todo-item')
+                                        input(hidden='true', name='id', value=item.id)
+                                        button
+                                            img(src='/images/delete.svg')
                     else
                         p Your list is empty
                 form(method='POST', action='/add-todo-item')
