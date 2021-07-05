@@ -1,18 +1,4 @@
 .homepage {
-    width: 100%;
-    height: 100vh;
-    background-color: #005AD5;
-    position: relative;
-    overflow: hidden;
-}
-.bottom-shape {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 259px;
-    border-left: 100vw solid #005AD5;
-    border-bottom: 259px solid white;
 }
 .content {
     padding-top: 160px;

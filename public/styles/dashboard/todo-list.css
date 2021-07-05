@@ -1,16 +1,14 @@
-.dashboard {
-    height: 100vh;
-}
 .inner-content {
     margin: 75px auto 0 auto;
 }
 .todo-list {
     padding: 48px;
-    background: #333333;
+    background: white;
     border-radius: 8px;
+    border: 1px solid #333333;
 }
 .todo-list h3 {
-    color: white;
+    color: #333333;
     margin: 0 0 24px 0;
 }
 .todo-item {
@@ -62,11 +60,11 @@
     display: block;
 }
 .todo-list p {
-    color: white;
+    color: #333333;
     text-align: center;
 }
 .todo-item p {
-    color: white;
+    color: #333333;
 }
 form {
     margin-top: 16px;

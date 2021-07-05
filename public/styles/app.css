@@ -3,6 +3,7 @@ body {
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     font-weight: 400;
+    position: relative;
 }
 * {
     box-sizing: border-box;
@@ -10,11 +11,39 @@ body {
 h1, h2, h3, h4, h5, h6, p {
     margin: 0;
 }
+.shape {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.shape-block {
+    background-color: #333333;
+    width: 100%;
+    height: 100%;
+}
+.bottom-shape {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 259px;
+    border-left: 100vw solid #333333;
+    border-bottom: 259px solid white;
+}
+.homepage-shape .shape-block {
+    background-color: #005AD5;
+}
+.homepage-shape .bottom-shape {
+    border-left-color: #005AD5;
+}
 .page-content {
     max-width: 1240px;
     width: 100%;
     height: 100%;
-    padding: 0 20px;
+    padding: 0 20px 100px 20px;
     margin: 0 auto;
 }
 header > div:first-of-type {
@@ -39,16 +68,16 @@ header > div:first-of-type a:hover {
 }
 .dashboard-header > div:first-of-type .logo,
 .dashboard-header > div:first-of-type a {
-    color: #333333;
+    color: white;
 }
 header .dashboard-menu {
     display: flex;
     justify-content: center;
     padding-top: 15px;
-    border-top: 1px solid #333333;
+    border-top: 1px solid white;
 }
 header .dashboard-menu a {
-    color: #333333;
+    color: white;
     margin-left: 100px;
 }
 header .dashboard-menu a:first-of-type {
