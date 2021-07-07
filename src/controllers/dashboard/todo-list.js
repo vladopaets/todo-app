@@ -19,7 +19,7 @@ module.exports = {
 			title: 'Todo: Dashboard',
 			todoItems,
 			isUserLoggedIn: true,
-			isDashboard: true
+			isDashboard: true,
 		})
 	},
 	addTodo: async (req, res) => {
@@ -50,10 +50,12 @@ module.exports = {
 			errorMsg = errors[0].msg;
 		}
 		
-		res.render('dashboard', {
+		res.render('./dashboard/todo-list', {
 			title: 'Todo: Dashboard',
 			errorMsg,
-			todoItems
+			todoItems,
+			isUserLoggedIn: true,
+			isDashboard: true,
 		})
 	},
 	removeTodo: async (req, res) => {

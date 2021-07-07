@@ -29,7 +29,7 @@ module.exports = {
                     await newUser.save();
 
                     req.session.user = newUser;
-                    res.redirect('/dashboard');
+                    res.redirect('/dashboard/todo-list');
 
                     return;
                 }

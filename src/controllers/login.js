@@ -23,7 +23,7 @@ module.exports = {
 
             if (match) {
                 req.session.user = user;
-                res.redirect('/dashboard');
+                res.redirect('/dashboard/todo-list');
             } else {
                 res.render('login', {
                     title: 'Todo: Login',

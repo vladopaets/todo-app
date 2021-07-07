@@ -36,14 +36,52 @@ block content
                                             img(src='/images/delete.svg')
                     else
                         p Your list is empty
-                form(method='POST', action='/add-todo-item')
-                    div
-                        input(
-                            type='text',
-                            name='title'
-                            class=errorMsg ? 'hasError': '',
-                            placeholder='Input to do title'
-                        )
-                        button Add
+                div.todo-list-buttons
+                    button#add-todo Add
+                    button Download
+
+        div(
+            class=errorMsg ? 'modal-window visible-modal' : 'modal-window',
+            id='add-todo-modal'
+        )
+            div.modal-content
+                h3 What do you need to do?
+                form(action='/add-todo-item', method='POST', class='add-todo-form')
+                    input(
+                        name='title',
+                        placeholder='Add a title',
+                        class=errorMsg ? 'hasError' : '',
+                    )
                     if errorMsg
                         p.inputError= errorMsg
+                    div.buttons
+                        if errorMsg
+                            a(href='/dashboard/todo-list') Cancel
+                        else
+                            button#cancel-btn  Cancel
+                        button(type='submit', class='blue-button') Submit
+
+block append scripts
+    script.
+        document.addEventListener('DOMContentLoaded', function () {
+            const addModal = document.getElementById('add-todo-modal');
+            const addBtn = document.getElementById('add-todo');
+            const cancelBtn = document.getElementById('cancel-btn');
+
+            addBtn.addEventListener('click', function () {
+                const isVisible = addModal.classList.contains('visible-modal');
+
+                if (isVisible) {
+                    addModal.classList.remove('visible-modal');
+
+                    return;
+                }
+
+                addModal.classList.add('visible-modal');
+            })
+            cancelBtn.addEventListener('click', function (e) {
+            	e.preventDefault();
+
+                addModal.classList.remove('visible-modal');
+            })
+        });
