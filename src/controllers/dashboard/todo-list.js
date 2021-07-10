@@ -1,4 +1,6 @@
 const {validationResult} = require('express-validator');
+const { Parser } = require('json2csv');
+
 const TodoModel = require('../../models/todo');
 
 async function getTodoItems(userId) {
@@ -29,12 +31,9 @@ async function getTodoItem(id) {
 
 module.exports = {
 	get: async (req, res) => {
-		console.log(req.query)
 		const todoItems = await getTodoItems(req.session.user._id);
 		const editableItemId = req.query.hasOwnProperty('id') ? req.query.id : '';
 		const editableItem = editableItemId ? await getTodoItem(editableItemId) : null;
-		
-		console.log(editableItem)
 		
 		res.render('./dashboard/todo-list', {
 			title: 'Todo: Dashboard',
@@ -129,5 +128,27 @@ module.exports = {
 		}
 		
 		res.redirect('/dashboard/todo-list');
+	},
+	import: async (req, res) => {
+		console.log('import')
+	},
+	download: async (req, res) => {
+		const todoItems = await TodoModel.find({user: req.session.user._id}).populate({ path: 'user' })
+
+		const fields = [
+			{ label: 'Title', value: 'title' },
+			{ label: 'Finished', value: 'checked' },
+			{ label: 'Date', value: 'date' },
+			{ label: 'User first name', value: 'user.firstName' },
+			{ label: 'User last name', value: 'user.lastName' },
+			{ label: 'User email', value: 'user.email' }
+		];
+		
+		const json2csv = new Parser({ fields });
+		const csv = json2csv.parse(todoItems);
+		
+		res.header('Content-Type', 'text/csv');
+		res.attachment('todo-list.csv');
+		return res.send(csv);
 	}
 }

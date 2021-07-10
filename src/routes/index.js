@@ -74,10 +74,12 @@ router.post(
     dashboardMiddleware,
     todoListController.editTodo
 );
-router.post('/remove-todo-item', dashboardMiddleware, todoListController.removeTodo)
-router.post('/check-todo-item', dashboardMiddleware, todoListController.checkTodo)
-router.get('/dashboard/teams', dashboardMiddleware, teamsController.get)
-router.get('/dashboard/categories', dashboardMiddleware, categoriesController.get)
+router.post('/remove-todo-item', dashboardMiddleware, todoListController.removeTodo);
+router.post('/check-todo-item', dashboardMiddleware, todoListController.checkTodo);
+router.post('/dashboard/import', dashboardMiddleware, todoListController.import);
+router.get('/dashboard/download', dashboardMiddleware, todoListController.download);
+router.get('/dashboard/teams', dashboardMiddleware, teamsController.get);
+router.get('/dashboard/categories', dashboardMiddleware, categoriesController.get);
 
 router.use((req, res, next) => {
     res.render('404.pug')
