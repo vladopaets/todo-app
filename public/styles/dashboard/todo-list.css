@@ -59,7 +59,8 @@
 .actions {
     display: flex;
 }
-.actions button {
+.actions button,
+.actions a {
     width: 32px;
     height: 32px;
     display: flex;
@@ -70,7 +71,7 @@
     border-radius: 4px;
     cursor: pointer;
 }
-.actions button:first-of-type {
+.actions a:first-of-type {
     background-color: #6200ee;
 }
 .actions button:nth-child(2) {
@@ -100,7 +101,7 @@ form > div {
     outline: none;
     cursor: pointer;
 }
-.add-todo-form input {
+.todo-form input {
     width: 100%;
     height: 40px;
     border: 1px solid #333333;
@@ -108,7 +109,7 @@ form > div {
     padding: 0 15px;
     margin-bottom: 15px;
 }
-.add-todo-form input.hasError {
+.todo-form input.hasError {
     border-color: red;
 }
 .inputError {

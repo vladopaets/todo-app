@@ -64,6 +64,16 @@ router.post(
     dashboardMiddleware,
     todoListController.addTodo
 );
+router.post(
+    '/edit-todo-item',
+    [
+        body('title')
+            .not().isEmpty()
+            .withMessage('Title is required'),
+    ],
+    dashboardMiddleware,
+    todoListController.editTodo
+);
 router.post('/remove-todo-item', dashboardMiddleware, todoListController.removeTodo)
 router.post('/check-todo-item', dashboardMiddleware, todoListController.checkTodo)
 router.get('/dashboard/teams', dashboardMiddleware, teamsController.get)

@@ -28,7 +28,7 @@ block content
                                                 img(src='/images/check.svg')
                                     p= item.title
                                 div.actions
-                                    button
+                                    a(href='/dashboard/todo-list?id=' + item.id)
                                         img(src='/images/edit.svg')
                                     form(method='POST', action='/remove-todo-item')
                                         input(hidden='true', name='id', value=item.id)
@@ -41,32 +41,61 @@ block content
                     button Download
 
         div(
-            class=errorMsg ? 'modal-window visible-modal' : 'modal-window',
+            class=addItemError ? 'modal-window visible-modal' : 'modal-window',
             id='add-todo-modal'
         )
             div.modal-content
                 h3 What do you need to do?
-                form(action='/add-todo-item', method='POST', class='add-todo-form')
+                form(action='/add-todo-item', method='POST', class='todo-form')
                     input(
                         name='title',
                         placeholder='Add a title',
-                        class=errorMsg ? 'hasError' : '',
+                        class=addItemError ? 'hasError' : '',
                     )
-                    if errorMsg
-                        p.inputError= errorMsg
+                    if addItemError
+                        p.inputError= addItemError
                     div.buttons
-                        if errorMsg
+                        if addItemError
                             a(href='/dashboard/todo-list') Cancel
                         else
-                            button#cancel-btn  Cancel
-                        button(type='submit', class='blue-button') Submit
+                            button#cancel-add-todo  Cancel
+                        button(type='submit', class='blue-button') Add
+
+        div(
+            class=editableItem ? 'modal-window visible-modal' : 'modal-window',
+            id='edit-todo-modal'
+        )
+            div.modal-content
+                h3 Edit to do item
+                form(action='/edit-todo-item', method='POST', class='todo-form')
+                    input(
+                        name='title',
+                        placeholder='Add a title',
+                        value=editableItem && editableItem.title
+                        class=editItemError ? 'hasError' : '',
+                    )
+                    input(
+                        hidden='true'
+                        value=editableItem && editableItem._id
+                        name='id'
+                    )
+                    if editItemError
+                        p.inputError= editItemError
+                    div.buttons
+                        if editItemError
+                            a(href='/dashboard/todo-list') Cancel
+                        else
+                            button#cancel-edit-todo  Cancel
+                        button(type='submit', class='blue-button') Edit
 
 block append scripts
     script.
         document.addEventListener('DOMContentLoaded', function () {
             const addModal = document.getElementById('add-todo-modal');
+            const editModal = document.getElementById('edit-todo-modal');
             const addBtn = document.getElementById('add-todo');
-            const cancelBtn = document.getElementById('cancel-btn');
+            const cancelAddTodo = document.getElementById('cancel-add-todo');
+            const cancelEditTodo = document.getElementById('cancel-edit-todo');
 
             addBtn.addEventListener('click', function () {
                 const isVisible = addModal.classList.contains('visible-modal');
@@ -78,10 +107,18 @@ block append scripts
                 }
 
                 addModal.classList.add('visible-modal');
-            })
-            cancelBtn.addEventListener('click', function (e) {
-            	e.preventDefault();
+            });
+
+            cancelAddTodo && cancelAddTodo.addEventListener('click', function (e) {
+                e.preventDefault();
 
                 addModal.classList.remove('visible-modal');
+            });
+
+            cancelEditTodo && cancelEditTodo.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                editModal.classList.remove('visible-modal');
+                window.location.replace(window.location.origin + window.location.pathname);
             })
         });
