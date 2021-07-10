@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const FileStore = require('session-file-store')(session);
+const fileUpload = require('express-fileupload');
 
 const routes = require('./routes');
 
@@ -26,6 +27,7 @@ app.use(session({
     }
 }))
 app.use(cookieParser())
+app.use(fileUpload());
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, '../public')))

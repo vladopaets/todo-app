@@ -88,6 +88,7 @@ form > div {
 }
 .todo-list-buttons {
     margin-top: 16px;
+    display: flex;
 }
 .todo-list-buttons button {
     width: 100px;
@@ -100,6 +101,21 @@ form > div {
     font-weight: 600;
     outline: none;
     cursor: pointer;
+}
+.todo-list-buttons form {
+    margin: 0;
+    color: white;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.todo-list-buttons form input {
+    margin-bottom: 1px;
+}
+.todo-list-buttons form .inputError {
+    position: absolute;
+    bottom: -11px;
+    font-size: 10px;
 }
 .todo-form input {
     width: 100%;

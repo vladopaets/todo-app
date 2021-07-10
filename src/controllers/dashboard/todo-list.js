@@ -130,7 +130,43 @@ module.exports = {
 		res.redirect('/dashboard/todo-list');
 	},
 	import: async (req, res) => {
-		console.log('import')
+		const todoItems = await getTodoItems(req.session.user._id);
+		
+		const response = {
+			isUserLoggedIn: true,
+			isDashboard: true,
+			title: 'Todo: Dashboard',
+			todoItems,
+		}
+		
+		if (!req.files || Object.keys(req.files).length === 0) {
+			res.render('./dashboard/todo-list', {
+				...response,
+				importError: 'No file selected',
+			})
+		}
+		const list = req.files['todo-list'];
+		
+		try {
+			const todoItems = JSON.parse(list.data.toString());
+		
+			for(let i = 0; i < todoItems.length; i++) {
+				const todoItem = new TodoModel({
+					title: todoItems[i].title,
+					checked: false,
+					user: req.session.user._id
+				})
+				
+				await todoItem.save();
+
+				res.redirect('/dashboard/todo-list');
+			}
+		} catch (error) {
+			res.render('./dashboard/todo-list', {
+				...response,
+				importError: 'Something went wrong',
+			})
+		}
 	},
 	download: async (req, res) => {
 		const todoItems = await TodoModel.find({user: req.session.user._id}).populate({ path: 'user' })

@@ -38,9 +38,14 @@ block content
                         p Your list is empty
                 div.todo-list-buttons
                     button#add-todo Add
-                    button Import
                     a(href='/dashboard/download')
                         button Download
+                    form(action='/dashboard/import', method='POST', encType='multipart/form-data')
+                        div
+                            input(type='file', name='todo-list')
+                            if importError
+                                p.inputError= importError
+                        button(type='submit') Import
 
         div(
             class=addItemError ? 'modal-window visible-modal' : 'modal-window',
