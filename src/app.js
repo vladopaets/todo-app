@@ -65,13 +65,3 @@ async function startServer() {
     });
 }
 startServer();
-
-process.on('SIGINT', function() {
-    process.exit();
-});
-process.on('SIGTSTP',  function() {
-    process.exit();
-});
-process.on('exit', async function () {
-    // kill the process on this port
-})

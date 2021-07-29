@@ -120,7 +120,7 @@ module.exports = {
 	},
 	checkTodo: async (req, res) => {
 		if (req.body.hasOwnProperty('id')) {
-			const isChecked = req.body.hasOwnProperty('status');
+			const isChecked = req.body.status;
 			
 			const result = await TodoModel.updateOne({ _id: req.body.id }, { checked: !isChecked });
 			
